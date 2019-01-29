@@ -5,6 +5,7 @@
 		protected $first_name;
 		protected $last_name;
 		protected $language;
+		protected static $age = '18 and above';
 
 		public function __construct($first_name, $last_name, $language) {
 			echo __CLASS__ ." created successfully.<br>";
@@ -20,15 +21,20 @@
 		public function set_first_name($name) {
 			$this->first_name = $name;
 		}
+
+		public static function age_limit() {
+			return self::$age.'<br>';
+		}
 	}
 
 	class Manager extends Employee {
 
 		protected $salary;
 		protected $emps;
+		public static $education = 'MBA';
 
 		public function __construct($first_name, $last_name, $language, $salary) {
-			Employee::__construct($first_name, $last_name, $language);
+			parent::__construct($first_name, $last_name, $language);
 			$this->salary = $salary;
 		}
 
@@ -52,5 +58,7 @@
 	$man1->set_emps($emp1);
 	$man1->set_emps($emp2);
 
-	echo $man1->get_emps();
+	// echo Manager::$education;
+	// echo $man1->get_emps();
+	// echo Manager::age_limit();
 ?>
