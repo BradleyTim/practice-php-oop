@@ -25,6 +25,20 @@
 		public static function age_limit() {
 			return self::$age.'<br>';
 		}
+
+		public function __get($property) {
+			if(property_exists($this, $property)) {
+				return $this->$property;
+			}
+		}
+
+		public function __set($property, $value) {
+			if(property_exists($this, $property)) {
+				$this->property = $value;
+			}
+
+			return $this;
+		}
 	}
 
 	class Manager extends Employee {
@@ -61,4 +75,6 @@
 	// echo Manager::$education;
 	// echo $man1->get_emps();
 	// echo Manager::age_limit();
+	// $emp1->__set('first_name', 'Stein');
+	// echo $emp1->__get('first_name');
 ?>
